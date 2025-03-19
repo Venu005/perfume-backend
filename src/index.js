@@ -1,3 +1,4 @@
+import "./env.js";
 import express from "express";
 
 import connectDB from "./config/db.js";
@@ -6,7 +7,6 @@ import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
 
-require("dotenv").config();
 connectDB();
 
 const app = express();
