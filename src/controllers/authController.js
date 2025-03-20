@@ -18,7 +18,7 @@ export const registerUser = asyncHandler(async (req, res) => {
 export const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-
+  console.log(user);
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
@@ -32,6 +32,7 @@ export const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
+const JWT_SECRET = "iamme";
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "30d" });
+  return jwt.sign({ id }, JWT_SECRET, { expiresIn: "30d" });
 };
