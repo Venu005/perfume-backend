@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Product from "./src/models/product.js"; // Update path to your Product model
+import review from "./src/models/review.js";
 
 const sampleProducts = [
   {
@@ -10,6 +11,7 @@ const sampleProducts = [
     images: [
       "https://unsplash.com/photos/50-ml-calvin-klein-one-perfume-bottle-MUX1pDZmVXY",
     ],
+    reviews: [],
   },
   {
     name: "White Rose Essence",
@@ -19,6 +21,7 @@ const sampleProducts = [
     images: [
       " https://unsplash.com/photos/50-ml-calvin-klein-one-perfume-bottle-MUX1pDZmVXY",
     ],
+    reviews: [],
   },
   {
     name: "Golden Elixir",
@@ -28,6 +31,7 @@ const sampleProducts = [
     images: [
       " https://unsplash.com/photos/50-ml-calvin-klein-one-perfume-bottle-MUX1pDZmVXY",
     ],
+    reviews: [],
   },
   {
     name: "L'Eau Laurissi",
@@ -37,6 +41,7 @@ const sampleProducts = [
     images: [
       " https://unsplash.com/photos/a-bottle-of-perfume-sitting-on-top-of-a-blue-cloth-oHos2n7ypvM",
     ],
+    reviews: [],
   },
   {
     name: "Calvin Klein One",
@@ -46,6 +51,7 @@ const sampleProducts = [
     images: [
       " https://unsplash.com/photos/red-and-black-perfume-bottle-7ic3yF64FS8",
     ],
+    reviews: [],
   },
   {
     name: "Black & White Edition",
@@ -55,6 +61,7 @@ const sampleProducts = [
     images: [
       " https://unsplash.com/photos/white-and-black-calvin-klein-perfume-bottle-49c-5-bNCRk",
     ],
+    reviews: [],
   },
   {
     name: "Red Passion",
@@ -64,6 +71,7 @@ const sampleProducts = [
     images: [
       " https://unsplash.com/photos/calvin-klein-one-perfume-bottle-NZAaeVR7MFw",
     ],
+    reviews: [],
   },
   {
     name: "Crystal Essence",
@@ -71,6 +79,7 @@ const sampleProducts = [
     price: 79.99,
     sizes: ["50ml"],
     images: [" https://unsplash.com/photos/l-eau-laurissi-CVz2Ove_NuI"],
+    reviews: [],
   },
   {
     name: "Blue Silk",
@@ -80,6 +89,7 @@ const sampleProducts = [
     images: [
       "https://unsplash.com/photos/gold-perfume-bottle-on-white-textile-a5917t2ea8I",
     ],
+    reviews: [],
   },
   {
     name: "CK One Mini",
@@ -89,6 +99,7 @@ const sampleProducts = [
     images: [
       " https://unsplash.com/photos/white-rose-on-clear-glass-bottle-CyfmSpqNMD8",
     ],
+    reviews: [],
   },
 ];
 
