@@ -6,13 +6,14 @@ import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
+import errorHandler from "./middleware/errorMiddleWare.js";
 
 connectDB();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-
+app.use(errorHandler);
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/reviews", reviewRoutes);
