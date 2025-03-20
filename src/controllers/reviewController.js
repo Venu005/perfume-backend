@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Review from "../models/review.js";
 import asyncHandler from "express-async-handler";
 import Product from "../models/product.js";
