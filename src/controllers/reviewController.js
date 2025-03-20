@@ -1,6 +1,6 @@
 import Review from "../models/review.js";
 import asyncHandler from "express-async-handler";
-
+import Product from "../models/product.js";
 export const getProductReviews = asyncHandler(async (req, res) => {
   const reviews = await Review.find({ product: req.params.productId }).populate(
     "user",
@@ -12,19 +12,36 @@ export const getProductReviews = asyncHandler(async (req, res) => {
 export const createReview = asyncHandler(async (req, res) => {
   const { rating, comment } = req.body;
 
-  const review = await Review.create({
-    user: req.user._id,
-    product: req.params.productId,
-    rating,
-    comment,
-  });
+  // Create session for transaction
+  const session = await mongoose.startSession();
+  session.startTransaction();
 
-  // Add review to product's reviews array
-  await Product.findByIdAndUpdate(
-    req.params.productId,
-    { $push: { reviews: review._id } },
-    { new: true }
-  );
+  try {
+    const review = await Review.create(
+      [
+        {
+          user: req.user._id,
+          product: req.params.productId,
+          rating,
+          comment,
+        },
+      ],
+      { session }
+    );
 
-  res.status(201).json(review);
+    await Product.findByIdAndUpdate(
+      req.params.productId,
+      { $push: { reviews: review[0]._id } },
+      { session, new: true }
+    );
+
+    await session.commitTransaction();
+    res.status(201).json(review[0]);
+  } catch (error) {
+    await session.abortTransaction();
+    res.status(500);
+    throw new Error("Failed to create review");
+  } finally {
+    session.endSession();
+  }
 });
